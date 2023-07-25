@@ -6,41 +6,60 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: API-CLIENTES
-          uri: http://localhost:8081/
+        - id: api-clientes
+          uri: lb://api-clientes
           predicates:
-          - Path=/clientes/**
-        - id: cuentas
-          uri: http://localhost:8083/
+            - Path=/api/clientes/v1/**
+          filters:
+            - StripPrefix=3
+        - id: api-cuentas
+          uri: lb://api-cuentas
           predicates:
-          - Path=/cuentas/**
-        - id: creditos
-          uri: http://localhost:8082/
+            - Path=/api/cuentas/v1/**
+          filters:
+            - StripPrefix=3
+        - id: api-creditos
+          uri: lb://api-creditos
           predicates:
-          - Path=/creditos/**
-        - id: cuentas-operaciones
-          uri: http://localhost:8084/
+            - Path=/api/creditos/v1/**
+          filters:
+            - StripPrefix=3
+        - id: api-cuentas-operaciones
+          uri: lb://api-cuentas-operaciones
           predicates:
-          - Path=/operaciones/cuentas/**
-        - id: creditos-pagos
-          uri: http://localhost:8086/
+            - Path=/api/cuentas-operaciones/v1/**
+          filters:
+            - StripPrefix=3
+        - id: api-creditos-pagos
+          uri: lb://api-creditos-pagos
           predicates:
-          - Path=/creditos/pagos/**
-        - id: creditos-consumos
-          uri: http://localhost:8085/
+            - Path=/api/creditos-pagos/v1/**
+          filters:
+            - StripPrefix=3
+        - id: api-creditos-consumos
+          uri: lb://api-creditos-consumos
           predicates:
-          - Path=/creditos/tarjetas/cargos/**
+            - Path=/api/creditos-consumos/v1/**
+          filters:
+            - StripPrefix=3
         - id: api-movimientos
-          uri: http://localhost:8087/
+          uri: lb://api-movimientos
           predicates:
-          - Path=/movimientos/**
+            - Path=/api/movimientos/v1/**
+          filters:
+            - StripPrefix=3
         - id: api-saldos
-          uri: http://localhost:8085/
+          uri: lb://api-saldos
           predicates:
-          - Path=/saldos/**
+            - Path=/api/saldos/v1/**
+          filters:
+            - StripPrefix=3
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+
+  instance:
+    hostname: localhost
