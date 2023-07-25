@@ -6,10 +6,38 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: clientes
-          uri: lb://API-CLIENTES
+        - id: API-CLIENTES
+          uri: http://localhost:8081/
           predicates:
-            - Path=/api/v1/clientes/**
+          - Path=/clientes/**
+        - id: cuentas
+          uri: http://localhost:8083/
+          predicates:
+          - Path=/cuentas/**
+        - id: creditos
+          uri: http://localhost:8082/
+          predicates:
+          - Path=/creditos/**
+        - id: cuentas-operaciones
+          uri: http://localhost:8084/
+          predicates:
+          - Path=/operaciones/cuentas/**
+        - id: creditos-pagos
+          uri: http://localhost:8086/
+          predicates:
+          - Path=/creditos/pagos/**
+        - id: creditos-consumos
+          uri: http://localhost:8085/
+          predicates:
+          - Path=/creditos/tarjetas/cargos/**
+        - id: api-movimientos
+          uri: http://localhost:8087/
+          predicates:
+          - Path=/movimientos/**
+        - id: api-saldos
+          uri: http://localhost:8085/
+          predicates:
+          - Path=/saldos/**
 eureka:
   client:
     service-url:
