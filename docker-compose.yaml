@@ -1,0 +1,124 @@
+version: "3.9"
+services:
+  api-clientes:
+    container_name: api-clientes
+    build:
+      context: api-clientes
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - spring
+  api-creditos:
+    container_name: api-creditos
+    build:
+      context: api-creditos
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - spring
+    restart: always
+  api-cuentas:
+    container_name: api-cuentas
+    build:
+      context: api-cuentas
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - spring
+    restart: always
+  api-cuentas-operaciones:
+    container_name: api-cuentas-operaciones
+    build:
+      context: api-cuentas-operaciones
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - spring
+    restart: always   
+  api-creditos-pagos:
+    container_name: api-creditos-pagos
+    build:
+      context: api-creditos-pagos
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086"
+    networks:
+      - spring
+    restart: always   
+  api-creditos-consumos:
+    container_name: api-creditos-consumos
+    build:
+      context: api-creditos-consumos
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    networks:
+      - spring
+    restart: always    
+  api-saldos:
+    container_name: api-saldos
+    build:
+      context: api-saldos
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    networks:
+      - spring
+    restart: always   
+  api-movimientos:
+    container_name: api-movimientos
+    build:
+      context: api-movimientos
+      dockerfile: Dockerfile
+    ports:
+      - "8087:8087"
+    networks:
+      - spring
+    restart: always      
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - spring
+    restart: always  
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    networks:
+      - spring
+    restart: always    
+  config-server:
+    container_name: config-server
+    build:
+      context: config-server
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8092"
+    networks:
+      - spring
+    restart: always   
+  api-monedero-movil:
+    container_name: api-monedero-movil
+    build:
+      context: api-monedero-movil
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"
+    networks:
+      - spring
+    restart: always      
+networks:
+  spring:
+    name: spring
