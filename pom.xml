@@ -7,8 +7,9 @@
         <version>2.5.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <groupId>com.bootcamp.bank</groupId>
     <artifactId>api-gateway</artifactId>
-    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
     <name>api-gateway</name>
     <url>http://maven.apache.org</url>
     <properties>
@@ -40,5 +41,20 @@
     </dependencyManagement>
     <build>
         <finalName>api-gateway</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+        </plugins>
     </build>
 </project>
